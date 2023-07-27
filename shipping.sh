@@ -10,7 +10,7 @@ mvn clean package
 mv target/shipping-1.0.jar shipping.jar
 
 yum install mysql -y
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pRoboShop@1 < /app/schema/shipping.sql
+mysql -h mysql.kdevops72.online -uroot -pRoboShop@1 < /app/schema/shipping.sql
 
 systemctl enable shipping
 systemctl restart shipping
