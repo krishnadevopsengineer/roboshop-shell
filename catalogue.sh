@@ -1,33 +1,33 @@
-echo -e "\e[36m >>>>>> Create Catalouge Service <<<<<<\e[0m"
+echo -e "\e[36m >>>>>> Create Catalouge Service <<<<<<\e[0m" | tee -a /tmp/roboshop.log
 cp catalogue.service /etc/systemd/system/catalogue.service &>>/tmp/roboshop.log
 
-echo -e "\e[36m >>>>>> Create MongoDB Repo <<<<<<\e[0m"
+echo -e "\e[36m >>>>>> Create MongoDB Repo <<<<<<\e[0m" | tee -a /tmp/roboshop.log
 cp mongo.repo /etc/yum.repos.d/mongo.repo &>>/tmp/roboshop.log
 
-echo -e "\e[36m >>>>>> Install NodeJS Repos <<<<<<\e[0m"
+echo -e "\e[36m >>>>>> Install NodeJS Repos <<<<<<\e[0m" | tee -a /tmp/roboshop.log
 curl -sL https://rpm.nodesource.com/setup_lts.x | bash &>>/tmp/roboshop.log
 
-echo -e "\e[36m >>>>>> Install NodeJS <<<<<<\e[0m"
+echo -e "\e[36m >>>>>> Install NodeJS <<<<<<\e[0m" | tee -a /tmp/roboshop.log
 yum install nodejs -y &>>/tmp/roboshop.log
 
-echo -e "\e[36m >>>>>> Create Application User <<<<<<\e[0m"
+echo -e "\e[36m >>>>>> Create Application User <<<<<<\e[0m" | tee -a /tmp/roboshop.log
 useradd roboshop &>>/tmp/roboshop.log
 
-echo -e "\e[36m >>>>>> Remove Application Directory <<<<<<\e[0m"
+echo -e "\e[36m >>>>>> Remove Application Directory <<<<<<\e[0m" | tee -a /tmp/roboshop.log
 rm -rf /app &>>/tmp/roboshop.log
 
-echo -e "\e[36m >>>>>> Create Application Directory <<<<<<\e[0m"
+echo -e "\e[36m >>>>>> Create Application Directory <<<<<<\e[0m" | tee -a /tmp/roboshop.log
 mkdir /app &>>/tmp/roboshop.log
 
-echo -e "\e[36m >>>>>> Download Application Content <<<<<<\e[0m"
+echo -e "\e[36m >>>>>> Download Application Content <<<<<<\e[0m" | tee -a /tmp/roboshop.log
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip &>>/tmp/roboshop.log
 
-echo -e "\e[36m >>>>>> Extract Application Content <<<<<<\e[0m"
+echo -e "\e[36m >>>>>> Extract Application Content <<<<<<\e[0m" | tee -a /tmp/roboshop.log
 cd /app
 unzip /tmp/catalogue.zip &>>/tmp/roboshop.log
 cd /app
 
-echo -e "\e[36m >>>>>> Download NodeJS Dependencies <<<<<<\e[0m"
+echo -e "\e[36m >>>>>> Download NodeJS Dependencies <<<<<<\e[0m" | tee -a /tmp/roboshop.log
 npm install &>>/tmp/roboshop.log
 
 echo -e "\e[36m >>>>>> Install MongoDB Client <<<<<<\e[0m"
