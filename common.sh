@@ -100,12 +100,14 @@ func_java() {
 
   echo -e "\e[36m >>>>>> Install Maven  <<<<<<\e[0m"
   yum install maven -y &>>${log}
+  func_exit_status
 
   func_apppreq
 
   echo -e "\e[36m >>>>>> Build ${component} Service  <<<<<<\e[0m"
   mvn clean package &>>${log}
   mv target/${component}-1.0.jar ${component}.jar &>>${log}
+  func_exit_status
 
   func_schema_setup
 
@@ -115,11 +117,13 @@ func_java() {
 func_python() {
   echo -e "\e[36m >>>>>> Build ${component} Service  <<<<<<\e[0m"
   yum install python36 gcc python3-devel -y &>>${log}
+  func_exit_status
 
   func_apppreq
 
   echo -e "\e[36m >>>>>> Download Python Dependencies  <<<<<<\e[0m"
   pip3.6 install -r requirements.txt &>>${log}
+  func_exit_status
 
   func_systemd
 }
@@ -127,6 +131,7 @@ func_python() {
 func_dispatch() {
   echo -e "\e[36m >>>>>> Install GoLang  <<<<<<\e[0m"
   yum install golang -y &>>${log}
+  func_exit_status
 
   func_apppreq
 
@@ -134,6 +139,7 @@ func_dispatch() {
   go mod init dispatch &>>${log}
   go get &>>${log}
   go build &>>${log}
+  func_exit_status
 
   func_systemd
 }
